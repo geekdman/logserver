@@ -35,7 +35,7 @@ func (tp *TgzPacker) dirExists(dir string) bool {
 }
 func getFiletime(filename string,currentTime time.Time) bool {
 	fileinfo,_ :=os.Stat(filename)
-	ft := fileinfo.Sys().(*syscall.Stat_t).Ctim.Unix()
+	fileinfo.ModTime()
 	//oldTime := currentTime.AddDate(0, 0, -7)
 	return currentTime.Before(ft.AddDate(0,0,7))
 }
