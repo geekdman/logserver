@@ -37,7 +37,7 @@ func getFiletime(filename string,currentTime time.Time) bool {
 	fileinfo,_ :=os.Stat(filename)
 	ft := fileinfo.Sys().(*syscall.Stat_t).Ctim.Unix()
 	//oldTime := currentTime.AddDate(0, 0, -7)
-	return currentTime.After(ft.Add(time.Hour))
+	return currentTime.Before(ft.AddDate(0,0,7))
 }
 
 //压缩打包
