@@ -9,23 +9,16 @@ import (
 func main() {
 
 	var (
-		src string
+		src  string
 		dest string
 	)
-
 	// 添加参数
-	flag.StringVar(&src,"src","","要压缩的文件或者目录")
-	flag.StringVar(&dest,"dest","","要锁生成的文件")
-	if len(flag.Args()) == 0 {
-		flag.Usage()
-		log.Fatal()
-	}
+	flag.StringVar(&src, "src", "", "要压缩的文件或者目录")
+	flag.StringVar(&dest, "dest", "", "要锁生成的文件")
 	flag.Parse()
 
-	//
-	fw:= test.NewTgzPacker()
-	fw.Pack(src,dest)
-	if err:=fw.Pack(src,dest);err != nil {
+	fw := test.NewTgzPacker()
+	if err := fw.Pack(src, dest); err != nil {
 		log.Fatal(err)
 	}
 }
