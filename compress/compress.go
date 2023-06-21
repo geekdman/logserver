@@ -153,16 +153,28 @@ func (tp *TgzPacker) tarFolder(sourceFullPath string, baseName string, writer *t
 			// 普通文件，则创建读句柄，将内容拷贝到tarWriter中
 
 			//判断文件modify time
+			fr, err := os.Open(fileName)
 			if getFiletime(fileName,currentTime) {
-				fr, err := os.Open(fileName)
-				if err != nil {
-					return err
-				}
-				defer fr.Close()
-				if _, err := io.Copy(writer, fr); err != nil {
-					return err
-				}
+
 			}
+			if err != nil {
+				return err
+			}
+			defer fr.Close()
+			if _, err := io.Copy(writer, fr); err != nil {
+				return err
+			}
+
+
+
+			//fr, err := os.Open(fileName)
+			//if err != nil {
+			//	return err
+			//}
+			//defer fr.Close()
+			//if _, err := io.Copy(writer, fr); err != nil {
+			//	return err
+			//}
 			return nil
 	})
 }
